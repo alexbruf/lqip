@@ -1,0 +1,8 @@
+{
+  "imports": {
+    "sharp": "npm:sharp@0.33.2"
+  },
+  "tasks": {
+    "start": "deno run --allow-all main.ts"
+  }
+}
