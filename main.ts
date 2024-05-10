@@ -1,4 +1,4 @@
-import {sharp, base64, Hono} from "./deps.ts";
+import { sharp, base64, Hono } from "./deps.ts";
 
 const cache = new Map<string, string>();
 export async function computeLqipImage(
@@ -45,8 +45,21 @@ export async function computeLqipImage(
     prefix: "temp_",
     suffix: `.${outputFormat}`,
   });
-  const info = await output.toFile(tempFilePath);
-  const { base64Encoded: base64, fileData } = await fileToBase64(tempFilePath);
+
+  let info: sharp.OutputInfo;
+  let base64: string;
+  let fileData: Uint8Array;
+  try {
+    // code that uses `tempPath`...
+    info = await output.toFile(tempFilePath);
+    const { base64Encoded, fileData: fileDataIn } =
+      await fileToBase64(tempFilePath);
+
+    base64 = base64Encoded;
+    fileData = fileDataIn;
+  } finally {
+    await Deno.remove(tempFilePath, { recursive: true });
+  }
 
   return {
     content: fileData,
