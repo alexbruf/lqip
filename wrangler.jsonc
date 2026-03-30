@@ -2,7 +2,7 @@
   "name": "lqip",
   "main": "src/index.ts",
   "compatibility_date": "2024-12-01",
-  "account_id": "0cba3747b5fcf1aa4eec00e1d7ade7a8",
+  "account_id": "26108e3201e299582e4f6df2912f0b19",
   "route": {
     "custom_domain": true,
     "pattern": "lqip.garagedoorhandbook.com",
